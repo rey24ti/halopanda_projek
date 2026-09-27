@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Rey_halopanda</string>
+    <string name="btn_my_project">My Project</string>
+    <string name="snack_title">HaloPandda</string>
+    <string name="snack_desc">HaloPandda adalah kue lembut berwarna hijau dengan aroma khas pandan, berlapis krim manis dan taburan kelapa atau keju di atasnya.</string>
+    <string name="snack_nutrition">Komposisi Gizi (per 100g):\n- Kalori: 280 kkal\n- Protein: 4 g\n- Lemak: 12 g\n- Karbohidrat: 38 g\n- Gula: 18 g\n- Natrium: 150 mg</string>
+    <string name="img_desc">Gambar HaloPandda</string>
+</resources>
