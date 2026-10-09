@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- angle="135" artinya arah gradasi dari kiri atas ke kanan bawah -->
+    <gradient
+        android:angle="135"
+        android:startColor="#E2D1F9"
+        android:endColor="#C2E9FB"
+        android:type="linear" />
+</shape>
