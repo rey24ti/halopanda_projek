@@ -18,16 +18,19 @@ import com.example.rey_halopanda.R
 class loginActivity : AppCompatActivity() {
 
     // Deklarasi view
-    private lateinit var etEmail: EditText
+    private lateinit var etEmail: EditText // ID tetap etEmail, tapi fungsinya jadi kolom Nama
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var tvRegister: TextView
     private lateinit var tvLupaPassword: TextView
 
-    // ✅ Daftar email yang diizinkan masuk
-    private val daftarEmailDiizinkan = listOf(
-        "owner@gmail",
-        "karyawana@gmail"
+    // ✅ Daftar NAMA yang diizinkan masuk
+    private val daftarNamaDiizinkan = listOf(
+        "owner",
+        "karyawan",
+        "admin",
+        "budi",
+        "rey"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,20 +58,20 @@ class loginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         tvRegister = findViewById(R.id.tvDaftarSekarang)
         tvLupaPassword = findViewById(R.id.tvLupaPassword)
+
+        // Ubah hint dan tipe input agar sesuai sebagai kolom Nama
+        etEmail.hint = "Masukkan Nama Anda"
+        etEmail.inputType = android.text.InputType.TYPE_CLASS_TEXT
     }
 
     private fun setupListener() {
         btnLogin.setOnClickListener {
-            val email = etEmail.text.toString().trim()
+            val nama = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
             when {
-                email.isEmpty() -> {
-                    etEmail.error = "Email tidak boleh kosong"
-                    etEmail.requestFocus()
-                }
-                !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                    etEmail.error = "Format email tidak valid"
+                nama.isEmpty() -> {
+                    etEmail.error = "Nama tidak boleh kosong"
                     etEmail.requestFocus()
                 }
                 password.isEmpty() -> {
@@ -80,71 +83,60 @@ class loginActivity : AppCompatActivity() {
                     etPassword.requestFocus()
                 }
                 else -> {
-                    // Semua validasi lolos, jalankan proses login
-                    prosesLogin(email, password)
+                    prosesLogin(nama, password)
                 }
             }
         }
 
-        // ✅ Deteksi tombol Enter di keyboard saat mengisi Password
         etPassword.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideKeyboard()
-                btnLogin.performClick() // Otomatis klik tombol login
+                btnLogin.performClick()
                 true
             } else {
                 false
             }
         }
 
-        // --- BAGIAN INI YANG SAYA MODIFIKASI ---
         tvRegister.setOnClickListener {
-            // Pindah ke halaman RegisterActivity
-            // Pastikan nama class "RegisterActivity" sesuai dengan nama file Kotlin registrasi Anda
             val intent = Intent(this@loginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
-        // ----------------------------------------
 
         tvLupaPassword.setOnClickListener {
-            // startActivity(Intent(this, lupaPasswordActivity::class.java))
             Toast.makeText(this, "Buka halaman Lupa Password", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun prosesLogin(email: String, password: String) {
-        // Nonaktifkan tombol & ubah teks saat loading
+    private fun prosesLogin(nama: String, password: String) {
         btnLogin.isEnabled = false
         btnLogin.text = "Loading..."
 
-        // Simulasi proses login (ganti dengan API/database nanti)
         btnLogin.postDelayed({
-            // ✅ Cek apakah email ada di daftar yang diizinkan
-            if (email in daftarEmailDiizinkan) {
-                Toast.makeText(this, "Login Berhasil sebagai $email", Toast.LENGTH_SHORT).show()
+            if (daftarNamaDiizinkan.any { it.equals(nama, ignoreCase = true) }) {
+                Toast.makeText(this, "Login Berhasil sebagai $nama", Toast.LENGTH_SHORT).show()
                 hideKeyboard()
 
-                // TODO: Arahkan ke halaman utama (MainActivity) nanti
-                // val intent = Intent(this, MainActivity::class.java)
-                // startActivity(intent)
-                // finish()
-            } else {
-                // ❌ Email tidak terdaftar
-                Toast.makeText(this, "Login Gagal! Email tidak terdaftar.", Toast.LENGTH_LONG).show()
-                etEmail.error = "Email tidak terdaftar"
-                etEmail.requestFocus()
-            }
+                // ================= PERUBAHAN DI SINI =================
+                // Arahkan ke halaman Beranda (beradaActivity), bukan MainActivity
+                val intent = Intent(this@loginActivity, beradaActivity::class.java)
+                startActivity(intent)
+                finish()
+                // ======================================================
 
-            // Kembalikan tombol ke kondisi semula
-            btnLogin.isEnabled = true
-            btnLogin.text = "LOGIN"
+            } else {
+                Toast.makeText(this, "Login Gagal! Nama tidak terdaftar.", Toast.LENGTH_LONG).show()
+                etEmail.error = "Nama tidak terdaftar"
+                etEmail.requestFocus()
+
+                btnLogin.isEnabled = true
+                btnLogin.text = "LOGIN"
+            }
         }, 1000)
     }
 
-    // ✅ Fungsi untuk menyembunyikan keyboard
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
-
 }

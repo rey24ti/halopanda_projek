@@ -12,31 +12,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Rey_halopanda"
         tools:targetApi="31">
+
+        <!-- 👇 LOGIN ACTIVITY SEBAGAI TAMPILAN AWAL (LAUNCHER) 👇 -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".projek.loginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 👇 MAIN ACTIVITY 👇 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Activity Lainnya -->
         <activity
             android:name=".SnackDetailActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".projek.loginActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".projek.beradaActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".projek.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- ✅ KategoriActivity (Halaman Kategori) -->
+        <activity
+            android:name=".projek.KategoriActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
     </application>
 
 </manifest>

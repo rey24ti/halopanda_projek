@@ -28,11 +28,12 @@ class RegisterActivity : AppCompatActivity() {
         btnDaftar.setOnClickListener {
             val nama = etNama.text.toString()
             val email = etEmail.text.toString()
+            val noHp = etNoHp.text.toString() // Ambil nilai No HP
             val password = etPassword.text.toString()
             val konfirmasi = etKonfirmasiPassword.text.toString()
 
             // Validasi sederhana (Cek apakah ada yang kosong)
-            if (nama.isEmpty() || email.isEmpty() || password.isEmpty() || konfirmasi.isEmpty()) {
+            if (nama.isEmpty() || email.isEmpty() || noHp.isEmpty() || password.isEmpty() || konfirmasi.isEmpty()) {
                 Toast.makeText(this, "Mohon isi semua data!", Toast.LENGTH_SHORT).show()
             } else if (password != konfirmasi) {
                 Toast.makeText(this, "Password dan Konfirmasi tidak sama!", Toast.LENGTH_SHORT).show()
@@ -40,7 +41,7 @@ class RegisterActivity : AppCompatActivity() {
                 // Jika berhasil, tampilkan pesan dan pindah ke halaman Login
                 Toast.makeText(this, "Registrasi Berhasil! Silakan Login.", Toast.LENGTH_LONG).show()
 
-                // Pindah ke LoginActivity (Pastikan nama class LoginActivity Anda benar)
+                // Pindah ke LoginActivity (Perhatikan huruf kapital 'L' di LoginActivity)
                 val intent = Intent(this@RegisterActivity, loginActivity::class.java)
                 startActivity(intent)
                 finish() // Menutup halaman register agar tidak bisa di-back

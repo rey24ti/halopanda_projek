@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.example.rey_halopanda"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.rey_halopanda"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

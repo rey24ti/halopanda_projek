@@ -14,8 +14,6 @@
         android:padding="28dp"
         android:gravity="center">
 
-        <!-- Logo -->
-
         <!-- Title -->
         <ImageView
             android:layout_width="120dp"
@@ -49,7 +47,7 @@
             android:layout_height="56dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/bg_input"
-            android:hint="Email"
+            android:hint="Emailre"
             android:inputType="textEmailAddress"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
@@ -88,7 +86,7 @@
 
         <!-- Tombol Login -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnlogin"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="30dp"
