@@ -1,9 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Rey_halopanda" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Tema utama aplikasi Anda (biarkan saja jika sudah ada) -->
+    <style name="Theme.Rey_halopanda" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- ... kode tema Anda ... -->
     </style>
 
-    <style name="Theme.Rey_halopanda" parent="Base.Theme.Rey_halopanda" />
+    <!-- ✅ Tema Khusus Splash Screen -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Warna latar belakang splash screen -->
+        <item name="windowSplashScreenBackground">#0D47A1</item>
+
+        <!-- Ikon yang muncul di tengah splash screen -->
+        <!-- Ganti @mipmap/ic_launcher dengan logo Anda, misal @drawable/logo_halopanda -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+
+        <!-- Tema yang akan digunakan SETELAH splash screen selesai -->
+        <item name="postSplashScreenTheme">@style/Theme.Rey_halopanda</item>
+    </style>
 </resources>

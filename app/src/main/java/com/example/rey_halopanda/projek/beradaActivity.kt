@@ -62,7 +62,7 @@ class beradaActivity : AppCompatActivity() {
         // 7. Setup RecyclerView Produk
         setupProduk()
 
-        // 8. ✅ SETUP BOTTOM NAVIGATION (Bagian yang Hilang Sebelumnya)
+        // 8. Setup Bottom Navigation
         setupBottomNavigation()
     }
 
@@ -80,7 +80,7 @@ class beradaActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_kategori -> {
-                    // ✅ Pindah ke Halaman Kategori
+                    // Pindah ke Halaman Kategori
                     val intent = Intent(this, KategoriActivity::class.java)
                     startActivity(intent)
                     finish() // Tutup Beranda agar tidak menumpuk di backstack
@@ -94,8 +94,10 @@ class beradaActivity : AppCompatActivity() {
                     Toast.makeText(this, "Buka Chat", Toast.LENGTH_SHORT).show()
                     true
                 }
+                // ✅ BAGIAN YANG DIUBAH: Pindah ke Halaman Profil Developer
                 R.id.nav_akun -> {
-                    Toast.makeText(this, "Buka Akun", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, ProfilDeveloperActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false

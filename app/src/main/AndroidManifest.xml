@@ -13,17 +13,22 @@
         android:theme="@style/Theme.Rey_halopanda"
         tools:targetApi="31">
 
-        <!-- 👇 LOGIN ACTIVITY SEBAGAI TAMPILAN AWAL (LAUNCHER) 👇 -->
+        <!-- ✅ SPLASH ACTIVITY SEBAGAI TAMPILAN AWAL (LAUNCHER) -->
         <activity
-            android:name=".projek.loginActivity"
+            android:name=".projek.SplashActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 👇 LOGIN ACTIVITY (BUKAN LAGI JADI TAMPILAN AWAL) 👇 -->
+        <activity
+            android:name=".projek.loginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- 👇 MAIN ACTIVITY 👇 -->
         <activity
@@ -52,6 +57,10 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity
+            android:name=".projek.ProfilDeveloperActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 
