@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_splash_gradient">
 
-    <!-- Container untuk mengelompokkan Logo dan Teks agar rapi di tengah -->
     <LinearLayout
         android:id="@+id/centerContainer"
         android:layout_width="wrap_content"
@@ -18,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- LOGO (Di dalam kotak putih melengkung) -->
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardLogo"
             android:layout_width="130dp"
@@ -29,7 +28,6 @@
             app:strokeColor="#E0E0E0"
             app:strokeWidth="1dp">
 
-            <!-- Ganti @mipmap/ic_launcher dengan logo CK Anda -->
             <ImageView
                 android:id="@+id/ivLogo"
                 android:layout_width="match_parent"
@@ -39,7 +37,7 @@
                 android:padding="16dp" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- TEKS WELCOME -->
+
         <TextView
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
@@ -51,7 +49,7 @@
             android:textStyle="bold"
             android:letterSpacing="0.15" />
 
-        <!-- SUBTITLE -->
+
         <TextView
             android:id="@+id/tvSubtitle"
             android:layout_width="wrap_content"
@@ -63,7 +61,7 @@
             android:letterSpacing="0.05" />
     </LinearLayout>
 
-    <!-- LOADING SPINNER (Tetap di bawah layar) -->
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"

@@ -1,9 +1,4 @@
 package com.example.rey_halopanda.projek
-
-/**
- * Data class untuk menampung informasi produk.
- * Data class TIDAK butuh Activity, Layout XML, atau AndroidManifest.
- */
 data class ProdukModel(
     val nama: String,
     val harga: String,

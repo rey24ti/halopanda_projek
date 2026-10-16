@@ -17,14 +17,11 @@ import com.example.rey_halopanda.R
 
 class loginActivity : AppCompatActivity() {
 
-    // Deklarasi view
-    private lateinit var etEmail: EditText // ID tetap etEmail, tapi fungsinya jadi kolom Nama
+    private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var tvRegister: TextView
     private lateinit var tvLupaPassword: TextView
-
-    // ✅ Daftar NAMA yang diizinkan masuk
     private val daftarNamaDiizinkan = listOf(
         "owner",
         "karyawan",
@@ -38,17 +35,13 @@ class loginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
-        // Handle edge-to-edge insets
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // Init view
         initView()
-
-        // Setup listener
         setupListener()
     }
 
@@ -59,7 +52,7 @@ class loginActivity : AppCompatActivity() {
         tvRegister = findViewById(R.id.tvDaftarSekarang)
         tvLupaPassword = findViewById(R.id.tvLupaPassword)
 
-        // Ubah hint dan tipe input agar sesuai sebagai kolom Nama
+
         etEmail.hint = "Masukkan Nama Anda"
         etEmail.inputType = android.text.InputType.TYPE_CLASS_TEXT
     }
@@ -117,12 +110,11 @@ class loginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login Berhasil sebagai $nama", Toast.LENGTH_SHORT).show()
                 hideKeyboard()
 
-                // ================= PERUBAHAN DI SINI =================
-                // Arahkan ke halaman Beranda (beradaActivity), bukan MainActivity
+
                 val intent = Intent(this@loginActivity, beradaActivity::class.java)
                 startActivity(intent)
                 finish()
-                // ======================================================
+
 
             } else {
                 Toast.makeText(this, "Login Gagal! Nama tidak terdaftar.", Toast.LENGTH_LONG).show()

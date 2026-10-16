@@ -1,0 +1,42 @@
+<resources>
+    <!-- ... style lain yang sudah ada ... -->
+
+    <style name="MenuAkunRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="MenuAkunIcon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:tint">#0D47A1</item>
+    </style>
+
+    <style name="MenuAkunText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:textColor">#212121</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MenuAkunArrow">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#9E9E9E</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="MenuAkunDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#EEEEEE</item>
+        <item name="android:layout_marginStart">52dp</item>
+    </style>
+</resources>

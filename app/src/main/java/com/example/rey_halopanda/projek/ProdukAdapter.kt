@@ -39,7 +39,7 @@ class ProdukAdapter(
         holder.tvRating.text = "★ ${item.rating}"
         holder.tvTerjual.text = "${item.terjual} terjual"
 
-        // Flash Sale logic
+
         if (item.isFlashSale) {
             holder.tvFlashTag.visibility = View.VISIBLE
             holder.tvHargaCoret.visibility = View.VISIBLE

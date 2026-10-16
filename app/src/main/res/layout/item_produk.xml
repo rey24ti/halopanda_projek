@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Gambar Produk -->
+
         <ImageView
             android:id="@+id/ivProduk"
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <!-- Label Flash Sale (Hanya muncul jika Flash Sale) -->
+
             <TextView
                 android:id="@+id/tvFlashSaleTag"
                 android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                 android:paddingVertical="2dp"
                 android:visibility="gone" />
 
-            <!-- Nama Produk -->
+
             <TextView
                 android:id="@+id/tvNamaProduk"
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 android:maxLines="2"
                 android:ellipsize="end" />
 
-            <!-- Harga -->
+
             <TextView
                 android:id="@+id/tvHarga"
                 android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                 android:textStyle="bold"
                 android:textColor="#D32F2F" />
 
-            <!-- Harga Coret (Untuk Flash Sale) -->
+
             <TextView
                 android:id="@+id/tvHargaCoret"
                 android:layout_width="wrap_content"
@@ -76,7 +76,6 @@
                 android:textColor="#9E9E9E"
                 android:visibility="gone" />
 
-            <!-- Rating & Terjual -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +100,7 @@
                     android:textSize="11sp" />
             </LinearLayout>
 
-            <!-- Tombol Beli -->
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBeli"
                 android:layout_width="match_parent"
