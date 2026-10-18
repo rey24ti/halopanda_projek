@@ -7,226 +7,101 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <!-- TOP BAR -->
+    <!-- HEADER & SEARCH (FIXED) -->
     <LinearLayout
-        android:id="@+id/topBarTrans"
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:elevation="4dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="12dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Transaksi"
-            android:textColor="#212121"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_search"
-            app:tint="#424242" />
-
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_cart"
-            app:tint="#424242" />
-
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_profile"
-            app:tint="#424242" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/searchBarTrans"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/bg_search_white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/topBarTrans">
-
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_search"
-            app:tint="#212121" />
-
-        <EditText
-            android:id="@+id/etSearchTrans"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:hint="Cari no. invoice, semen, besi, dll"
-            android:paddingStart="8dp"
-            android:textColor="#000000"
-            android:textColorHint="#757575"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-
-    <HorizontalScrollView
-        android:id="@+id/filterChips"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:paddingHorizontal="12dp"
-        android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@+id/searchBarTrans">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#0D47A1"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Semua"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Belum Dibayar"
-                android:textColor="#424242"
-                android:textSize="12sp"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Diproses"
-                android:textColor="#424242"
-                android:textSize="12sp"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Dikirim"
-                android:textColor="#424242"
-                android:textSize="12sp"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:text="Selesai"
-                android:textColor="#424242"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </HorizontalScrollView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/bannerFaktur"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="#E3F2FD"
-        app:layout_constraintTop_toBottomOf="@+id/filterChips">
-
+        <!-- Top Bar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="12dp">
-
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_profile"
-                app:tint="#0D47A1"
-                android:layout_marginEnd="8dp"/>
-
-            <LinearLayout
+            android:orientation="horizontal">
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Portal Faktur Pajak &amp; Surat Jalan"
-                    android:textColor="#0D47A1"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Gunakan fitur ini untuk mengunduh dokumen pajak."
-                    android:textColor="#424242"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unduh"
-                android:textColor="#0D47A1"
-                android:textSize="11sp"
+                android:text="Transaksi Saya"
+                android:textColor="#212121"
+                android:textSize="18sp"
                 android:textStyle="bold" />
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_search" app:tint="#424242" android:layout_marginEnd="16dp"/>
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_cart" app:tint="#424242" android:layout_marginEnd="16dp"/>
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_profile" app:tint="#424242" />
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
+        <!-- Banner Rekap -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#E3F2FD"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
+            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_edit" app:tint="#0D47A1" android:layout_marginEnd="8dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rekap Semua Metode Pembayaran" android:textColor="#0D47A1" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akun Kontraktor Proyek Terverifikasi" android:textColor="#424242" android:textSize="10sp" />
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Okt 2026 ▾" android:textColor="#0D47A1" android:textSize="11sp" android:textStyle="bold" />
+        </LinearLayout>
 
+        <!-- Search Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_search_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp">
+            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_search" app:tint="#757575" />
+            <EditText android:id="@+id/etSearchTrans" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@null" android:hint="Cari nomor pesanan atau produk..." android:paddingStart="8dp" android:textSize="12sp" android:textColorHint="#9E9E9E" />
+        </LinearLayout>
+
+        <!-- Filter Chips -->
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:scrollbars="none">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#FFFFFF" android:paddingHorizontal="16dp" android:paddingVertical="6dp" android:text="Semua" android:textColor="#424242" android:textSize="11sp" android:layout_marginEnd="8dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#0D47A1" android:paddingHorizontal="16dp" android:paddingVertical="6dp" android:text="Diproses" android:textColor="#FFFFFF" android:textSize="11sp" android:layout_marginEnd="8dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#FFFFFF" android:paddingHorizontal="16dp" android:paddingVertical="6dp" android:text="Dikirim" android:textColor="#424242" android:textSize="11sp" android:layout_marginEnd="8dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#FFFFFF" android:paddingHorizontal="16dp" android:paddingVertical="6dp" android:text="Selesai" android:textColor="#424242" android:textSize="11sp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- LIST TRANSAKSI (Dengan padding bawah agar tidak tertutup FAB) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTransaksiList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="12dp"
+        android:paddingBottom="100dp"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bannerFaktur"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
         tools:itemCount="3"
         tools:listitem="@layout/item_transaksi_card" />
+
+    <!-- FLOATING ACTION BUTTON (+) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#0D47A1"
+        app:tint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

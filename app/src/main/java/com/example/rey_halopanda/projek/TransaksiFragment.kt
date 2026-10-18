@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rey_halopanda.R
+import com.google.android.material.button.MaterialButton
 
 class TransaksiFragment : Fragment() {
 
@@ -28,60 +29,56 @@ class TransaksiFragment : Fragment() {
 
         rvTransaksiList = view.findViewById(R.id.rvTransaksiList)
 
+        // Setup Pencarian
         val etSearch = view.findViewById<EditText>(R.id.etSearchTrans)
         etSearch.setOnEditorActionListener { _, _, _ ->
             Toast.makeText(requireContext(), "Mencari: ${etSearch.text}", Toast.LENGTH_SHORT).show()
             false
         }
 
-
-        view.findViewById<View>(R.id.bannerFaktur).setOnClickListener {
-            Toast.makeText(requireContext(), "Mengunduh Faktur...", Toast.LENGTH_SHORT).show()
+        // Setup Tombol Tambah (FAB)
+        view.findViewById<View>(R.id.fabAdd).setOnClickListener {
+            Toast.makeText(requireContext(), "Buat Pesanan Baru...", Toast.LENGTH_SHORT).show()
         }
 
         setupListTransaksi()
     }
 
     private fun setupListTransaksi() {
+        // Data Dummy (Tanpa btnUtamaText & btnUtamaIcon karena sudah otomatis)
         val dataTransaksi = listOf(
             TransModel(
-                tanggal = "28 Feb 2026",
-                invoice = "INV/20260228/XYZ123",
-                status = "Selesai",
-                namaProduk = "Semen Gresik PCC 40kg",
-                varian = "40 Kg (1 Sak) Truk Coli",
-                qty = "x 40 Sak",
-                total = "Rp 4.280.000",
-                warnaBgStatus = "#E8F5E9",
-                warnaTextStatus = "#2E7D32",
-                aksi1 = "Lacak Pesanan",
-                aksi2 = "Beri Ulasan"
-            ),
-            TransModel(
-                tanggal = "27 Feb 2026",
-                invoice = "INV/20260227/ABC456",
+                id = "TRX-20261010-001",
+                tanggal = "1 Okt 2026",
                 status = "Diproses",
-                namaProduk = "Baja Ringan Canal C 0.75mm",
-                varian = "0.75mm (1 Batang)",
-                qty = "x 50 Batang",
-                total = "Rp 10.450.000",
-                warnaBgStatus = "#E3F2FD",
-                warnaTextStatus = "#1565C0",
-                aksi1 = "Hubungi Penjual",
-                aksi2 = "Bayar Sekarang"
+                namaProduk = "Semen Portland 50kg",
+                varian = "Tipe 1 PCC, 1 Sak",
+                qty = "x 100 Sak",
+                total = "Rp 75.000",
+                showFaktur = true,
+                warnaBg = "#E3F2FD", warnaText = "#0D47A1"
             ),
             TransModel(
-                tanggal = "26 Feb 2026",
-                invoice = "INV/20260226/DEF789",
-                status = "Belum Dibayar",
-                namaProduk = "Besi Beton Ulir D19 SJP 15m",
-                varian = "D19 (1 Batang) 12m",
-                qty = "x 100 Batang",
-                total = "Rp 23.850.000",
-                warnaBgStatus = "#FFEBEE",
-                warnaTextStatus = "#C62828",
-                aksi1 = "Rincian",
-                aksi2 = "Bayar Sekarang"
+                id = "TRX-20261010-004",
+                tanggal = "4 Okt 2026",
+                status = "Dikirim",
+                namaProduk = "Besi Beton Ulir D13 SNI Full",
+                varian = "Ulir 13mm x 12m",
+                qty = "x 80 Batang",
+                total = "Rp 750.000",
+                showFaktur = false,
+                warnaBg = "#F5F5F5", warnaText = "#424242"
+            ),
+            TransModel(
+                id = "TRX-20261010-042",
+                tanggal = "10 Okt 2026",
+                status = "Selesai",
+                namaProduk = "Cat Palfon Anti Bocor Waterproofing",
+                varian = "Warna Abu-abu, 4kg",
+                qty = "x 2 Kaleng",
+                total = "Rp 60.000",
+                showFaktur = true,
+                warnaBg = "#E8F5E9", warnaText = "#2E7D32"
             )
         )
 
@@ -102,42 +99,67 @@ class TransaksiFragment : Fragment() {
         }
     }
 
+    // Model Data
     data class TransModel(
-        val tanggal: String, val invoice: String, val status: String,
+        val id: String, val tanggal: String, val status: String,
         val namaProduk: String, val varian: String, val qty: String,
-        val total: String, val warnaBgStatus: String, val warnaTextStatus: String,
-        val aksi1: String, val aksi2: String
+        val total: String, val showFaktur: Boolean,
+        val warnaBg: String, val warnaText: String
     )
 
     inner class TransVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(data: TransModel) {
-            itemView.findViewById<TextView>(R.id.tvTanggalTrans).text = data.tanggal
-            itemView.findViewById<TextView>(R.id.tvInvoiceTrans).text = data.invoice
+            // 1. Set Data Teks
+            itemView.findViewById<TextView>(R.id.tvTrxId).text = data.id
+            itemView.findViewById<TextView>(R.id.tvTrxDate).text = data.tanggal
 
-            val tvStatus = itemView.findViewById<TextView>(R.id.tvStatusTrans)
+            // 2. Set Status (Teks & Warna Background)
+            val tvStatus = itemView.findViewById<TextView>(R.id.tvStatus)
             tvStatus.text = data.status
-            tvStatus.setBackgroundColor(Color.parseColor(data.warnaBgStatus))
-            tvStatus.setTextColor(Color.parseColor(data.warnaTextStatus))
+            tvStatus.setTextColor(Color.parseColor(data.warnaText))
 
-            itemView.findViewById<TextView>(R.id.tvNamaProdukTrans).text = data.namaProduk
-            itemView.findViewById<TextView>(R.id.tvVarianTrans).text = data.varian
-            itemView.findViewById<TextView>(R.id.tvQtyTrans).text = data.qty
-            itemView.findViewById<TextView>(R.id.tvTotalTrans).text = data.total
-            itemView.findViewById<ImageView>(R.id.ivProdukTrans)
-                .setImageResource(android.R.drawable.ic_menu_gallery)
-
-            val btn1 = itemView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnAksi1)
-            val btn2 = itemView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnAksi2)
-
-            btn1.text = data.aksi1
-            btn2.text = data.aksi2
-
-            btn1.setOnClickListener {
-                Toast.makeText(requireContext(), "${data.aksi1} untuk ${data.invoice}", Toast.LENGTH_SHORT).show()
+            val bgDrawable = when (data.warnaBg) {
+                "#E3F2FD" -> R.drawable.bg_status_blue
+                "#E8F5E9" -> R.drawable.bg_status_green
+                else -> R.drawable.bg_status_gray
             }
-            btn2.setOnClickListener {
-                Toast.makeText(requireContext(), "${data.aksi2} untuk ${data.invoice}", Toast.LENGTH_SHORT).show()
+            tvStatus.setBackgroundResource(bgDrawable)
+
+            // 3. Tampilkan/Sembunyikan Banner Faktur
+            val layoutFaktur = itemView.findViewById<LinearLayout>(R.id.layoutFaktur)
+            layoutFaktur.visibility = if (data.showFaktur) View.VISIBLE else View.GONE
+
+            // 4. Set Data Produk
+            itemView.findViewById<TextView>(R.id.tvNamaProduk).text = data.namaProduk
+            itemView.findViewById<TextView>(R.id.tvVarian).text = data.varian
+            itemView.findViewById<TextView>(R.id.tvQty).text = data.qty
+            itemView.findViewById<TextView>(R.id.tvTotal).text = data.total
+
+            // 5. Tombol Detail (Navigasi ke DetailTransaksiFragment)
+            itemView.findViewById<MaterialButton>(R.id.btnDetail).setOnClickListener {
+                val fragment = DetailTransaksiFragment()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
             }
+
+            // ================= 6. LOGIKA TOMBOL DINAMIS =================
+            val btnUtama = itemView.findViewById<MaterialButton>(R.id.btnAksiUtama)
+
+            // Jika status Selesai atau Batal, jadi "Beli Lagi". Jika masih jalan, jadi "Lacak Pesanan".
+            if (data.status == "Selesai" || data.status == "Dibatalkan") {
+                btnUtama.text = "Beli Lagi"
+                btnUtama.setIconResource(R.drawable.ic_cart)
+            } else {
+                btnUtama.text = "Lacak Pesanan"
+                btnUtama.setIconResource(R.drawable.ic_location)
+            }
+
+            btnUtama.setOnClickListener {
+                Toast.makeText(requireContext(), "${btnUtama.text} untuk ${data.id}", Toast.LENGTH_SHORT).show()
+            }
+            // ============================================================
         }
     }
 }
