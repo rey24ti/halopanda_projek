@@ -109,7 +109,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupProduk() {
-        // PERBAIKAN ADA DI SINI (Menggunakan Named Arguments)
         val listProduk = listOf(
             ProdukModel(
                 nama = "Semen Gresik 40kg",

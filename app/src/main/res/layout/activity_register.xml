@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-
         <ImageView
             android:id="@+id/ivIcon"
             android:layout_width="72dp"
@@ -23,7 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="#0D47A1" />
-
 
         <TextView
             android:id="@+id/tvTitle"
@@ -38,7 +36,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivIcon" />
 
-
         <TextView
             android:id="@+id/tvSubtitle"
             android:layout_width="wrap_content"
@@ -51,7 +48,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardForm"
@@ -69,12 +65,12 @@
                 android:orientation="vertical"
                 android:padding="24dp">
 
-
+                <!-- 1. INPUT NAMA (Sesuai Soal) -->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Depan"
+                    android:hint="Nama Lengkap"
                     app:boxStrokeColor="#0D47A1"
                     app:boxStrokeWidth="2dp">
 
@@ -87,51 +83,13 @@
                         android:textColorHint="#9E9E9E" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
+                <!-- 2. INPUT NO HANDPHONE (Wajib inputNumber) -->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:hint="Nama Belakang"
-                    app:boxStrokeColor="#0D47A1"
-                    app:boxStrokeWidth="2dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etNamaBelakang"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:textColor="#000000"
-                        android:textColorHint="#9E9E9E" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="Email"
-                    app:boxStrokeColor="#0D47A1"
-                    app:boxStrokeWidth="2dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="#000000"
-                        android:textColorHint="#9E9E9E" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="Nomor HP"
+                    android:hint="No. Handphone"
                     app:boxStrokeColor="#0D47A1"
                     app:boxStrokeWidth="2dp">
 
@@ -139,12 +97,32 @@
                         android:id="@+id/etNoHp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="phone"
+                        android:inputType="number"
+                        android:maxLength="15"
                         android:textColor="#000000"
                         android:textColorHint="#9E9E9E" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- 3. INPUT USERNAME (Sesuai Soal) -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Username"
+                    app:boxStrokeColor="#0D47A1"
+                    app:boxStrokeWidth="2dp">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="#000000"
+                        android:textColorHint="#9E9E9E" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 4. INPUT PASSWORD -->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -164,6 +142,7 @@
                         android:textColorHint="#9E9E9E" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- 5. INPUT KONFIRMASI PASSWORD -->
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -183,13 +162,12 @@
                         android:textColorHint="#9E9E9E" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
+                <!-- Indikator Kekuatan Password -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal">
-
                     <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginEnd="4dp" android:layout_weight="1" android:background="#E0E0E0" />
                     <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginEnd="4dp" android:layout_weight="1" android:background="#E0E0E0" />
                     <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginEnd="4dp" android:layout_weight="1" android:background="#E0E0E0" />
@@ -201,12 +179,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:orientation="horizontal">
-
                     <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Kekuatan: Belum diisi" android:textColor="#757575" android:textSize="12sp" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kombinasi huruf &amp; angka" android:textColor="#757575" android:textSize="12sp" />
                 </LinearLayout>
 
-
+                <!-- Tombol Daftar -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDaftar"
                     android:layout_width="match_parent"
@@ -229,7 +206,6 @@
                     android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
-
                     <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#E0E0E0" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="8dp" android:text="atau daftar dengan" android:textColor="#757575" android:textSize="12sp" />
                     <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#E0E0E0" />
@@ -254,7 +230,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Teks Pindah ke Login -->
         <TextView
             android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
@@ -270,7 +245,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardForm" />
 
-        <!-- Syarat & Ketentuan -->
         <TextView
             android:id="@+id/tvTerms"
             android:layout_width="wrap_content"
