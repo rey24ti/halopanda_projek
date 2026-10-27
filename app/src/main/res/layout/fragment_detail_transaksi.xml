@@ -255,7 +255,7 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="#FFFFFF"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="12dp">
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rincian Pembayaran" android:textColor="#212121" android:textSize="13sp" android:textStyle="bold" android:layout_marginBottom="12dp" />
@@ -288,7 +288,8 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="#FFFFFF"
+                android:layout_marginBottom="16dp">
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="16dp">
                     <ImageView android:layout_width="40dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_gallery" android:background="#EEEEEE" />
@@ -299,6 +300,22 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lunas" android:textColor="#2E7D32" android:textSize="12sp" android:textStyle="bold" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <!-- ================= TOMBOL DOWNLOAD PDF (FITUR BARU) ================= -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDownloadPdf"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:text="Unduh Invoice PDF"
+                android:textColor="#0D47A1"
+                android:textStyle="bold"
+                app:cornerRadius="8dp"
+                app:icon="@drawable/ic_document"
+                app:iconTint="#0D47A1"
+                app:strokeColor="#0D47A1"
+                app:strokeWidth="2dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -1,12 +1,20 @@
 package com.example.rey_halopanda.projek
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.rey_halopanda.R
+import java.io.File
+import java.io.FileOutputStream
 
 class DetailTransaksiFragment : Fragment() {
 
@@ -38,9 +46,98 @@ class DetailTransaksiFragment : Fragment() {
             Toast.makeText(requireContext(), "Melacak Pesanan...", Toast.LENGTH_SHORT).show()
         }
 
-        // Tombol CS
-        view.findViewById<View>(R.id.btnSuperCS).setOnClickListener {
-            Toast.makeText(requireContext(), "Menghubungi CS...", Toast.LENGTH_SHORT).show()
+        // Tombol Unduh PDF (Fitur Baru)
+        view.findViewById<View>(R.id.btnDownloadPdf).setOnClickListener {
+            generatePdf()
+        }
+    }
+
+    // ================= FUNGSI PEMBUAT PDF =================
+    private fun generatePdf() {
+        // 1. Buat Dokumen PDF
+        val pdfDocument = PdfDocument()
+
+        // Ukuran kertas A4 dalam pixel (standar PDF)
+        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create()
+        val page = pdfDocument.startPage(pageInfo)
+        val canvas = page.canvas
+
+        // 2. Siapkan Alat Gambar (Paint)
+        val paint = Paint()
+        paint.color = Color.BLACK
+        paint.textSize = 16f
+
+        var y = 50f // Posisi Y awal
+        val x = 40f // Posisi X (Margin kiri)
+        val lineSpacing = 25f // Jarak antar baris
+
+        // 3. Gambar Teks ke PDF
+        // Header
+        paint.isFakeBoldText = true
+        canvas.drawText("INVOICE TOKO BANGUNAN", x, y, paint)
+
+        y += lineSpacing * 2
+        paint.textSize = 12f
+        paint.isFakeBoldText = false
+
+        // Rincian Transaksi
+        canvas.drawText("ID Transaksi : TRX-20261010-001", x, y, paint); y += lineSpacing
+        canvas.drawText("Tanggal      : 10 Okt 2026", x, y, paint); y += lineSpacing
+        canvas.drawText("Status       : LUNAS", x, y, paint); y += lineSpacing * 2
+
+        // Produk
+        canvas.drawText("Rincian Produk:", x, y, paint); y += lineSpacing
+        canvas.drawText("- Semen Portland 50kg (2 sak) : Rp  50.000", x, y, paint); y += lineSpacing
+        canvas.drawText("- Ongkos Kirim                 : Rp  75.000", x, y, paint); y += lineSpacing
+        canvas.drawText("- Asuransi Pengiriman         : Rp   2.000", x, y, paint); y += lineSpacing * 2
+
+        // Total
+        paint.textSize = 14f
+        paint.isFakeBoldText = true
+        canvas.drawText("Total Pembayaran : Rp 127.000", x, y, paint)
+
+        // 4. Selesaikan Halaman
+        pdfDocument.finishPage(page)
+
+        // 5. Simpan File ke Penyimpanan HP
+        // getExternalFilesDir menyimpan file di folder khusus aplikasi tanpa perlu izin storage
+        val fileName = "Invoice_TRX-001.pdf"
+        val file = File(requireContext().getExternalFilesDir(null), fileName)
+
+        try {
+            // Simpan file
+            val fileOutputStream = FileOutputStream(file)
+            pdfDocument.writeTo(fileOutputStream)
+            fileOutputStream.close()
+
+            // Tampilkan pesan sukses
+            Toast.makeText(requireContext(), "PDF Berhasil disimpan!", Toast.LENGTH_SHORT).show()
+
+            // ================== FITUR AUTO-OPEN PDF ==================
+            // Buka file PDF yang baru saja dibuat menggunakan aplikasi PDF Viewer di HP
+            val uri = FileProvider.getUriForFile(
+                requireContext(),
+                "${requireContext().packageName}.provider",
+                file
+            )
+
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, "application/pdf")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+
+            try {
+                startActivity(intent) // Membuka PDF
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(requireContext(), "Tidak ada aplikasi PDF Viewer di HP ini", Toast.LENGTH_LONG).show()
+            }
+            // ==========================================================
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(requireContext(), "Gagal menyimpan PDF: ${e.message}", Toast.LENGTH_SHORT).show()
+        } finally {
+            pdfDocument.close()
         }
     }
 }

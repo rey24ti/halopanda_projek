@@ -20,23 +20,18 @@
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- 👇 LOGIN ACTIVITY (BUKAN LAGI JADI TAMPILAN AWAL) 👇 -->
+        <!-- 👇 ACTIVITY LAINNYA 👇 -->
         <activity
             android:name=".projek.loginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
-        <!-- 👇 MAIN ACTIVITY 👇 -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
-        <!-- Activity Lainnya -->
         <activity
             android:name=".SnackDetailActivity"
             android:exported="false"
@@ -49,8 +44,6 @@
             android:name=".projek.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
-        <!-- ✅ KategoriActivity (Halaman Kategori) -->
         <activity
             android:name=".projek.KategoriActivity"
             android:exported="false"
@@ -63,6 +56,20 @@
             android:name=".projek.VerifikasiActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- ================== TAMBAHAN UNTUK FITUR PDF ================== -->
+        <!-- Ini wajib ada agar file PDF bisa dibuka oleh aplikasi lain (WPS/Drive) -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <!-- ============================================================== -->
+
     </application>
 
 </manifest>

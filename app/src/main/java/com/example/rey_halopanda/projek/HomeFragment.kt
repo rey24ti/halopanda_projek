@@ -27,24 +27,40 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Panggil ID dari XML
         rvKategori  = view.findViewById(R.id.rvKategori)
         rvFlashSale = view.findViewById(R.id.rvFlashSale)
         rvProduk    = view.findViewById(R.id.rvProduk)
 
-
         val etSearch = view.findViewById<EditText>(R.id.etSearch)
+        val ivCart = view.findViewById<ImageView>(R.id.ivCart)
+        val ivNotif = view.findViewById<ImageView>(R.id.ivNotif)
+        val btnMenuKalkulator = view.findViewById<View>(R.id.btnMenuKalkulator)
+
+        // Aksi Search
         etSearch.setOnEditorActionListener { _, _, _ ->
             Toast.makeText(requireContext(), "Mencari: ${etSearch.text}", Toast.LENGTH_SHORT).show()
             false
         }
 
-        view.findViewById<ImageView>(R.id.ivCart).setOnClickListener {
+        // Aksi Ikon
+        ivCart.setOnClickListener {
             Toast.makeText(requireContext(), "Buka Keranjang", Toast.LENGTH_SHORT).show()
         }
-        view.findViewById<ImageView>(R.id.ivNotif).setOnClickListener {
+        ivNotif.setOnClickListener {
             Toast.makeText(requireContext(), "Buka Notifikasi", Toast.LENGTH_SHORT).show()
         }
 
+        // Aksi Navigasi Kalkulator
+        btnMenuKalkulator.setOnClickListener {
+            val fragment = KalkulatorFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        // Setup RecyclerViews
         setupKategori()
         setupFlashSale()
         setupProduk()
@@ -68,6 +84,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupFlashSale() {
+        // PERBAIKAN: Gunakan nama parameter (nama =, harga =, dll)
         val listFlashSale = listOf(
             ProdukModel(
                 nama = "Semen Tiga Roda 50kg",
@@ -109,6 +126,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupProduk() {
+        // PERBAIKAN: Gunakan nama parameter juga agar aman
         val listProduk = listOf(
             ProdukModel(
                 nama = "Semen Gresik 40kg",
