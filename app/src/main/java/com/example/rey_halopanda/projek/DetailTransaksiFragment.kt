@@ -54,15 +54,15 @@ class DetailTransaksiFragment : Fragment() {
 
     // ================= FUNGSI PEMBUAT PDF =================
     private fun generatePdf() {
-        // 1. Buat Dokumen PDF
+
         val pdfDocument = PdfDocument()
 
-        // Ukuran kertas A4 dalam pixel (standar PDF)
+
         val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create()
         val page = pdfDocument.startPage(pageInfo)
         val canvas = page.canvas
 
-        // 2. Siapkan Alat Gambar (Paint)
+
         val paint = Paint()
         paint.color = Color.BLACK
         paint.textSize = 16f
@@ -71,8 +71,6 @@ class DetailTransaksiFragment : Fragment() {
         val x = 40f // Posisi X (Margin kiri)
         val lineSpacing = 25f // Jarak antar baris
 
-        // 3. Gambar Teks ke PDF
-        // Header
         paint.isFakeBoldText = true
         canvas.drawText("INVOICE TOKO BANGUNAN", x, y, paint)
 
@@ -96,25 +94,20 @@ class DetailTransaksiFragment : Fragment() {
         paint.isFakeBoldText = true
         canvas.drawText("Total Pembayaran : Rp 127.000", x, y, paint)
 
-        // 4. Selesaikan Halaman
+
         pdfDocument.finishPage(page)
 
-        // 5. Simpan File ke Penyimpanan HP
-        // getExternalFilesDir menyimpan file di folder khusus aplikasi tanpa perlu izin storage
         val fileName = "Invoice_TRX-001.pdf"
         val file = File(requireContext().getExternalFilesDir(null), fileName)
 
         try {
-            // Simpan file
+
             val fileOutputStream = FileOutputStream(file)
             pdfDocument.writeTo(fileOutputStream)
             fileOutputStream.close()
 
-            // Tampilkan pesan sukses
             Toast.makeText(requireContext(), "PDF Berhasil disimpan!", Toast.LENGTH_SHORT).show()
 
-            // ================== FITUR AUTO-OPEN PDF ==================
-            // Buka file PDF yang baru saja dibuat menggunakan aplikasi PDF Viewer di HP
             val uri = FileProvider.getUriForFile(
                 requireContext(),
                 "${requireContext().packageName}.provider",

@@ -96,12 +96,12 @@ class KalkulatorFragment : Fragment() {
                     (qtyBesi * hargaBesi) +
                     (qtyCat * hargaCat)
 
-            // Format Rupiah
+
             val localeID = Locale("id", "ID")
             val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
             val totalBiayaFormat = formatRupiah.format(totalBiaya).replace("Rp", "Rp ").split(",")[0]
 
-            // ================= TAMPILKAN HASIL =================
+
             tvLuas.text = "Luas Area: ${String.format("%.2f", luas)} m²"
             tvSemen.text = "• Semen: $qtySemen Sak (50kg)"
             tvPasir.text = "• Pasir: ${String.format("%.2f", qtyPasir)} m³"

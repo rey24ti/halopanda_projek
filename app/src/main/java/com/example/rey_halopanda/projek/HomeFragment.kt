@@ -37,16 +37,34 @@ class HomeFragment : Fragment() {
         val ivNotif = view.findViewById<ImageView>(R.id.ivNotif)
         val btnMenuKalkulator = view.findViewById<View>(R.id.btnMenuKalkulator)
 
-        // Aksi Search
-        etSearch.setOnEditorActionListener { _, _, _ ->
-            Toast.makeText(requireContext(), "Mencari: ${etSearch.text}", Toast.LENGTH_SHORT).show()
-            false
+        // ================== AKSI PENCARIAN (1 KLIK) ==================
+        etSearch.setOnClickListener {
+            val fragment = PencarianFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
         }
 
-        // Aksi Ikon
-        ivCart.setOnClickListener {
-            Toast.makeText(requireContext(), "Buka Keranjang", Toast.LENGTH_SHORT).show()
+        etSearch.setOnEditorActionListener { _, _, _ ->
+            val fragment = PencarianFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+            true
         }
+
+        // ================== AKSI IKON ==================
+        ivCart.setOnClickListener {
+            // PINDAH KE HALAMAN KERANJANG
+            val fragment = KeranjangFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         ivNotif.setOnClickListener {
             Toast.makeText(requireContext(), "Buka Notifikasi", Toast.LENGTH_SHORT).show()
         }
@@ -84,7 +102,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupFlashSale() {
-        // PERBAIKAN: Gunakan nama parameter (nama =, harga =, dll)
         val listFlashSale = listOf(
             ProdukModel(
                 nama = "Semen Tiga Roda 50kg",
@@ -120,13 +137,14 @@ class HomeFragment : Fragment() {
             )
         )
         rvFlashSale.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rvFlashSale.adapter = ProdukAdapter(listFlashSale) {
-            Toast.makeText(requireContext(), "Beli: ${it.nama}", Toast.LENGTH_SHORT).show()
+        rvFlashSale.adapter = ProdukAdapter(listFlashSale) { produk ->
+            // UBAH: Masukkan ke keranjang
+            CartManager.tambahKeKeranjang(produk)
+            Toast.makeText(requireContext(), "${produk.nama} masuk keranjang!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setupProduk() {
-        // PERBAIKAN: Gunakan nama parameter juga agar aman
         val listProduk = listOf(
             ProdukModel(
                 nama = "Semen Gresik 40kg",
@@ -172,8 +190,10 @@ class HomeFragment : Fragment() {
             )
         )
         rvProduk.layoutManager = GridLayoutManager(requireContext(), 2)
-        rvProduk.adapter = ProdukAdapter(listProduk) {
-            Toast.makeText(requireContext(), "Beli: ${it.nama}", Toast.LENGTH_SHORT).show()
+        rvProduk.adapter = ProdukAdapter(listProduk) { produk ->
+            // UBAH: Masukkan ke keranjang
+            CartManager.tambahKeKeranjang(produk)
+            Toast.makeText(requireContext(), "${produk.nama} masuk keranjang!", Toast.LENGTH_SHORT).show()
         }
     }
 }
