@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+    implementation("com.tbuonomo:dotsindicator:5.1.0")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
     // === CORE & UI ===
     implementation("androidx.core:core-splashscreen:1.0.1")
