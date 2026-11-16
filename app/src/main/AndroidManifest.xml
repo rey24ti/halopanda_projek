@@ -20,6 +20,7 @@
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -70,6 +71,10 @@
         </provider>
         <!-- ============================================================== -->
 
+        <activity
+            android:name=".projek.MaterialAdapter"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rey_halopanda.R
+import com.example.rey_halopanda.projek.adapter.MaterialAdapter // Import Adapter Baru
 
 class HomeFragment : Fragment() {
 
@@ -57,7 +58,6 @@ class HomeFragment : Fragment() {
 
         // ================== AKSI IKON ==================
         ivCart.setOnClickListener {
-            // PINDAH KE HALAMAN KERANJANG
             val fragment = KeranjangFragment()
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
@@ -69,7 +69,6 @@ class HomeFragment : Fragment() {
             Toast.makeText(requireContext(), "Buka Notifikasi", Toast.LENGTH_SHORT).show()
         }
 
-        // Aksi Navigasi Kalkulator
         btnMenuKalkulator.setOnClickListener {
             val fragment = KalkulatorFragment()
             parentFragmentManager.beginTransaction()
@@ -81,7 +80,7 @@ class HomeFragment : Fragment() {
         // Setup RecyclerViews
         setupKategori()
         setupFlashSale()
-        setupProduk()
+        setupProduk() // Ini yang kita ubah
     }
 
     private fun setupKategori() {
@@ -102,6 +101,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupFlashSale() {
+        // (Biarkan kode FlashSale kamu tetap sama seperti aslinya)
         val listFlashSale = listOf(
             ProdukModel(
                 nama = "Semen Tiga Roda 50kg",
@@ -138,7 +138,6 @@ class HomeFragment : Fragment() {
         )
         rvFlashSale.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvFlashSale.adapter = ProdukAdapter(listFlashSale) { produk ->
-            // UBAH: Masukkan ke keranjang
             CartManager.tambahKeKeranjang(produk)
             Toast.makeText(requireContext(), "${produk.nama} masuk keranjang!", Toast.LENGTH_SHORT).show()
         }
@@ -190,8 +189,9 @@ class HomeFragment : Fragment() {
             )
         )
         rvProduk.layoutManager = GridLayoutManager(requireContext(), 2)
-        rvProduk.adapter = ProdukAdapter(listProduk) { produk ->
-            // UBAH: Masukkan ke keranjang
+
+        // 🔥 DISINI KITA GUNAKAN MaterialAdapter BARU 🔥
+        rvProduk.adapter = MaterialAdapter(listProduk) { produk ->
             CartManager.tambahKeKeranjang(produk)
             Toast.makeText(requireContext(), "${produk.nama} masuk keranjang!", Toast.LENGTH_SHORT).show()
         }
