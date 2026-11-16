@@ -88,8 +88,10 @@ class PencarianFragment : Fragment() {
                 rvHasil.visibility = View.VISIBLE
                 layoutEmpty.visibility = View.GONE
 
-                rvHasil.adapter = ProdukAdapter(hasilFilter) {
-                    Toast.makeText(requireContext(), "Beli: ${it.nama}", Toast.LENGTH_SHORT).show()
+                // 🔥 PERBAIKAN: ProdukAdapter diganti MaterialAdapter, 'it' diganti 'produk' 🔥
+                rvHasil.adapter = MaterialAdapter(hasilFilter) { produk ->
+                    CartManager.tambahKeKeranjang(produk)
+                    Toast.makeText(requireContext(), "${produk.nama} masuk keranjang!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rey_halopanda.R
-import com.example.rey_halopanda.projek.adapter.MaterialAdapter // Import Adapter Baru
 
 class HomeFragment : Fragment() {
 
@@ -80,7 +79,7 @@ class HomeFragment : Fragment() {
         // Setup RecyclerViews
         setupKategori()
         setupFlashSale()
-        setupProduk() // Ini yang kita ubah
+        setupProduk()
     }
 
     private fun setupKategori() {
@@ -101,7 +100,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupFlashSale() {
-        // (Biarkan kode FlashSale kamu tetap sama seperti aslinya)
         val listFlashSale = listOf(
             ProdukModel(
                 nama = "Semen Tiga Roda 50kg",
@@ -137,7 +135,9 @@ class HomeFragment : Fragment() {
             )
         )
         rvFlashSale.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rvFlashSale.adapter = ProdukAdapter(listFlashSale) { produk ->
+
+        // 🔥 SUDAH DIGANTI MENJADI MaterialAdapter 🔥
+        rvFlashSale.adapter = MaterialAdapter(listFlashSale) { produk ->
             CartManager.tambahKeKeranjang(produk)
             Toast.makeText(requireContext(), "${produk.nama} masuk keranjang!", Toast.LENGTH_SHORT).show()
         }
@@ -190,7 +190,7 @@ class HomeFragment : Fragment() {
         )
         rvProduk.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        // 🔥 DISINI KITA GUNAKAN MaterialAdapter BARU 🔥
+        // 🔥 SUDAH DIGANTI MENJADI MaterialAdapter 🔥
         rvProduk.adapter = MaterialAdapter(listProduk) { produk ->
             CartManager.tambahKeKeranjang(produk)
             Toast.makeText(requireContext(), "${produk.nama} masuk keranjang!", Toast.LENGTH_SHORT).show()

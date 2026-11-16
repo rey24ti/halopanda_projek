@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="360dp"
+    android:height="220dp"
+    android:viewportWidth="360"
+    android:viewportHeight="220">
+
+    <!-- LAPISAN 1: Gelombang Belakang (Sangat Transparan) -->
+    <path
+        android:fillColor="#1AFFFFFF"
+        android:pathData="M0,0 L360,0 L360,160 C270,200 90,120 0,170 Z" />
+
+    <!-- LAPISAN 2: Gelombang Tengah (Agak Transparan) -->
+    <path
+        android:fillColor="#33FFFFFF"
+        android:pathData="M0,0 L360,0 L360,120 C240,170 120,80 0,130 Z" />
+
+    <!-- LAPISAN 3: Gelombang Depan (Warna Gradasi Biru Premium) -->
+    <path android:pathData="M0,0 L360,0 L360,80 C260,130 100,50 0,100 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="360"
+                android:endY="220"
+                android:startX="0"
+                android:startY="0"
+                android:type="linear">
+                <!-- Transisi dari Biru Terang ke Biru Gelap -->
+                <item
+                    android:color="#1E88E5"
+                    android:offset="0.0" />
+                <item
+                    android:color="#0D47A1"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- LAPISAN 4 (Opsional): Aksen Oranye di Pojok Kanan Bawah -->
+    <path
+        android:fillColor="#33FF9800"
+        android:pathData="M360,220 L360,120 C320,160 280,200 360,220 Z" />
+
+</vector>

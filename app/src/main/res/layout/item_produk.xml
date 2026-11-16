@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <ImageView
             android:id="@+id/ivProduk"
             android:layout_width="match_parent"
@@ -29,7 +28,6 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-
             <TextView
                 android:id="@+id/tvFlashSaleTag"
                 android:layout_width="wrap_content"
@@ -43,7 +41,6 @@
                 android:paddingVertical="2dp"
                 android:visibility="gone" />
 
-
             <TextView
                 android:id="@+id/tvNamaProduk"
                 android:layout_width="match_parent"
@@ -55,9 +52,9 @@
                 android:maxLines="2"
                 android:ellipsize="end" />
 
-
+            <!-- ID DIUBAH MENJADI tvHargaProduk -->
             <TextView
-                android:id="@+id/tvHarga"
+                android:id="@+id/tvHargaProduk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -65,7 +62,6 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="#D32F2F" />
-
 
             <TextView
                 android:id="@+id/tvHargaCoret"
@@ -99,7 +95,6 @@
                     android:textColor="#757575"
                     android:textSize="11sp" />
             </LinearLayout>
-
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBeli"
