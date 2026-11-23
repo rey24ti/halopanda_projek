@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.rey_halopanda.R
+// HAPUS BARIS IMPORT com.example.registrasi.RegisterActivity
 
 class loginActivity : AppCompatActivity() {
 
@@ -35,7 +36,6 @@ class loginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -51,7 +51,6 @@ class loginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         tvRegister = findViewById(R.id.tvDaftarSekarang)
         tvLupaPassword = findViewById(R.id.tvLupaPassword)
-
 
         etEmail.hint = "Masukkan Nama Anda"
         etEmail.inputType = android.text.InputType.TYPE_CLASS_TEXT
@@ -91,7 +90,9 @@ class loginActivity : AppCompatActivity() {
             }
         }
 
+        // INI BAGIAN YANG DIPERBAIKI
         tvRegister.setOnClickListener {
+            // Karena RegisterActivity ada di package yang sama, langsung panggil saja
             val intent = Intent(this@loginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
@@ -110,11 +111,10 @@ class loginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login Berhasil sebagai $nama", Toast.LENGTH_SHORT).show()
                 hideKeyboard()
 
-
+                // Pastikan nama class 'beradaActivity' sesuai dengan nama file Anda (case-sensitive)
                 val intent = Intent(this@loginActivity, beradaActivity::class.java)
                 startActivity(intent)
                 finish()
-
 
             } else {
                 Toast.makeText(this, "Login Gagal! Nama tidak terdaftar.", Toast.LENGTH_LONG).show()

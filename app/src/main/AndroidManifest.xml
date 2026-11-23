@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- IZIN INTERNET UNTUK SUPABASE -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,8 +16,7 @@
         android:theme="@style/Theme.Rey_halopanda"
         tools:targetApi="31">
 
-        <!-- ✅ SPLASH ACTIVITY SEBAGAI TAMPILAN AWAL (LAUNCHER) -->
-        <!-- UBAH THEME MENJADI Theme.Rey_halopanda AGAR TIDAK CRASH -->
+        <!-- SPLASH ACTIVITY SEBAGAI TAMPILAN AWAL (LAUNCHER) -->
         <activity
             android:name=".projek.SplashActivity"
             android:exported="true"
@@ -25,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <!-- 👇 ACTIVITY LAINNYA 👇 -->
+        <!-- ACTIVITY LAINNYA -->
         <activity
             android:name=".projek.loginActivity"
             android:exported="false"
@@ -65,13 +67,13 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- ✅ ONBOARD ACTIVITY -->
+        <!-- ONBOARD ACTIVITY -->
         <activity
             android:name=".projek.OnboardActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- ================== TAMBAHAN UNTUK FITUR PDF ================== -->
+        <!-- TAMBAHAN UNTUK FITUR PDF -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -81,7 +83,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <!-- ============================================================== -->
 
     </application>
 

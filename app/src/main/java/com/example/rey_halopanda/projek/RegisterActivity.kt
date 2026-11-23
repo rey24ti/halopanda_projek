@@ -1,55 +1,88 @@
 package com.example.rey_halopanda.projek
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.rey_halopanda.R
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
+import androidx.lifecycle.lifecycleScope
+import com.example.rey_halopanda.databinding.ActivityRegisterBinding
+import com.example.rey_halopanda.projek.data.api.SupabaseClient
+import com.example.rey_halopanda.projek.data.model.UserModel
+import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val etNama = findViewById<TextInputEditText>(R.id.etNama)
-        val etNoHp = findViewById<TextInputEditText>(R.id.etNoHp)
-        val etUsername = findViewById<TextInputEditText>(R.id.etUsername)
-        val etPassword = findViewById<TextInputEditText>(R.id.etPassword)
-        val etKonfirmasi = findViewById<TextInputEditText>(R.id.etKonfirmasiPassword)
-        val btnDaftar = findViewById<MaterialButton>(R.id.btnDaftar)
-        val tvLogin = findViewById<TextView>(R.id.tvLogin)
+        binding.btnDaftar.setOnClickListener {
+            val nama = binding.etNama.text.toString().trim()
+            val noHp = binding.etNoHp.text.toString().trim()
+            val email = binding.etEmail.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
 
-        btnDaftar.setOnClickListener {
-            val nama = etNama.text.toString().trim()
-            val noHp = etNoHp.text.toString().trim()
-            val username = etUsername.text.toString().trim()
-            val password = etPassword.text.toString().trim()
-            val konfirmasi = etKonfirmasi.text.toString().trim()
+            // Reset pesan error sebelumnya
+            binding.tilNama.error = null
+            binding.tilNoHp.error = null
+            binding.tilEmail.error = null
+            binding.tilPassword.error = null
 
-
-            if (nama.isEmpty() || noHp.isEmpty() || username.isEmpty() || password.isEmpty() || konfirmasi.isEmpty()) {
-                Toast.makeText(this, "Semua kolom wajib diisi!", Toast.LENGTH_SHORT).show()
-            } else if (noHp.length < 10) {
-                Toast.makeText(this, "Nomor HP tidak valid (minimal 10 digit)!", Toast.LENGTH_SHORT).show()
-            } else if (password != konfirmasi) {
-                Toast.makeText(this, "Password dan Konfirmasi tidak cocok!", Toast.LENGTH_SHORT).show()
-            } else {
-
-                val intent = Intent(this, VerifikasiActivity::class.java)
-                intent.putExtra("EXTRA_NO_HP", noHp)
-                intent.putExtra("EXTRA_PASSWORD", password)
-                intent.putExtra("EXTRA_USERNAME", username)
-                startActivity(intent)
-                finish()
+            // Validasi input
+            if (nama.isEmpty()) {
+                binding.tilNama.error = "Nama tidak boleh kosong"
+                return@setOnClickListener
             }
-        }
+            if (noHp.isEmpty()) {
+                binding.tilNoHp.error = "No HP tidak boleh kosong"
+                return@setOnClickListener
+            }
+            if (email.isEmpty()) {
+                binding.tilEmail.error = "Email tidak boleh kosong"
+                return@setOnClickListener
+            }
+            if (password.isEmpty()) {
+                binding.tilPassword.error = "Password tidak boleh kosong"
+                return@setOnClickListener
+            }
 
-        tvLogin.setOnClickListener {
-            finish()
+            prosesRegister(nama, noHp, email, password)
+        }
+    }
+
+    private fun prosesRegister(nama: String, noHp: String, email: String, password: String) {
+        binding.btnDaftar.isEnabled = false
+        binding.btnDaftar.text = "Mendaftar..."
+
+        lifecycleScope.launch {
+            try {
+                val userBaru = UserModel(
+                    nama = nama,
+                    no_hp = noHp,
+                    email = email,
+                    password = password
+                )
+                val response = SupabaseClient.apiService.registerUser(userBaru)
+
+                if (response.isSuccessful) {
+                    Toast.makeText(this@RegisterActivity, "Register Berhasil!", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    val pesanAsli = response.errorBody()?.string()
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Kode ${response.code()}: $pesanAsli",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@RegisterActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            } finally {
+                binding.btnDaftar.isEnabled = true
+                binding.btnDaftar.text = "Daftar"
+            }
         }
     }
 }

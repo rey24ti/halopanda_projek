@@ -1,10 +1,52 @@
 <resources>
+    <!-- App -->
     <string name="app_name">Rey_halopanda</string>
     <string name="btn_my_project">My Project</string>
+
+    <!-- Snack Info -->
     <string name="snack_title">HaloPandda</string>
     <string name="snack_desc">HaloPandda adalah kue lembut berwarna hijau dengan aroma khas pandan, berlapis krim manis dan taburan kelapa atau keju di atasnya.</string>
     <string name="snack_nutrition">Komposisi Gizi (per 100g):\n- Kalori: 280 kkal\n- Protein: 4 g\n- Lemak: 12 g\n- Karbohidrat: 38 g\n- Gula: 18 g\n- Natrium: 150 mg</string>
     <string name="img_desc">Gambar HaloPandda</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ==================== REGISTRASI ==================== -->
+    <!-- Judul -->
+    <string name="title_register">Daftar Akun</string>
+    <string name="subtitle_register">Lengkapi data berikut untuk membuat akun baru</string>
+
+    <!-- Label Field -->
+    <string name="label_nama">Nama Lengkap</string>
+    <string name="label_email">Email</string>
+    <string name="label_nohp">No HP</string>
+    <string name="label_password">Password</string>
+    <string name="label_konfirmasi">Konfirmasi Password</string>
+
+    <!-- Hint -->
+    <string name="hint_nama">Masukkan nama lengkap</string>
+    <string name="hint_email">contoh@email.com</string>
+    <string name="hint_nohp">08xxxxxxxxxx</string>
+    <string name="hint_password">Minimal 6 karakter</string>
+    <string name="hint_konfirmasi">Ulangi password</string>
+
+    <!-- Tombol & Link -->
+    <string name="btn_daftar">Daftar</string>
+    <string name="hint_login">Sudah punya akun? Login di sini</string>
+
+    <!-- Pesan Error Validasi -->
+    <string name="err_nama_kosong">Nama tidak boleh kosong</string>
+    <string name="err_email_kosong">Email tidak boleh kosong</string>
+    <string name="err_email_invalid">Format email tidak valid</string>
+    <string name="err_nohp_kosong">No HP tidak boleh kosong</string>
+    <string name="err_nohp_invalid">No HP harus 10–13 digit angka</string>
+    <string name="err_password_kosong">Password tidak boleh kosong</string>
+    <string name="err_password_min">Password minimal 6 karakter</string>
+    <string name="err_konfirmasi_kosong">Konfirmasi password tidak boleh kosong</string>
+    <string name="err_konfirmasi_cocok">Konfirmasi password tidak cocok</string>
+
+    <!-- Pesan Sukses -->
+    <string name="msg_register_success">Registrasi berhasil!\nSilakan login.</string>
+    <!-- ==================================================== -->
 </resources>
